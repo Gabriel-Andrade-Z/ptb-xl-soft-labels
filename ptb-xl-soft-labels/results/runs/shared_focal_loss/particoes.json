@@ -1,0 +1,32 @@
+{
+  "train": {
+    "registros": 15235,
+    "prevalencia": {
+      "MI": 0.1889,
+      "STTC": 0.2282,
+      "CD": 0.2219,
+      "HYP": 0.1025,
+      "NORM": 0.4343
+    }
+  },
+  "val": {
+    "registros": 3322,
+    "prevalencia": {
+      "MI": 0.1948,
+      "STTC": 0.2468,
+      "CD": 0.2321,
+      "HYP": 0.0975,
+      "NORM": 0.4199
+    }
+  },
+  "test": {
+    "registros": 3280,
+    "prevalencia": {
+      "MI": 0.189,
+      "STTC": 0.243,
+      "CD": 0.228,
+      "HYP": 0.1155,
+      "NORM": 0.439
+    }
+  }
+}

@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+# anchored with a leading slash so results/runs/ (the published logits) is NOT ignored
+/runs/
+/data/
+*.pt
+.ipynb_checkpoints/
