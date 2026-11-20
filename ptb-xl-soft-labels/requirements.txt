@@ -1,0 +1,10 @@
+# Python >= 3.10
+torch>=2.0
+torchaudio>=2.0        # required: band-pass filter (without it the filter is disabled)
+torchinfo>=1.8
+numpy>=1.24
+pandas>=1.5
+scipy>=1.10
+scikit-learn>=1.2
+matplotlib>=3.7
+seaborn>=0.12

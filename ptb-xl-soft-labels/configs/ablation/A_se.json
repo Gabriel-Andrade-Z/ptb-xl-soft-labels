@@ -1,0 +1,43 @@
+{
+  "_experiment": "Phase 1 - Model A (se), soft labels, seed 42, validation only",
+  "n_leads": 12,
+  "seeds": [
+    42
+  ],
+  "deterministic": false,
+  "arch_type": "specialists",
+  "batch_size": 256,
+  "num_workers": 4,
+  "lr_cnn": 0.0005,
+  "lr_cnn_por_classe": {
+    "MI": 0.0004,
+    "STTC": 0.0003,
+    "CD": 0.0002,
+    "HYP": 0.0005,
+    "NORM": 0.0002
+  },
+  "epochs_cnn": 60,
+  "weight_decay": 0.002,
+  "dropout_cnn": 0.15,
+  "es_patience": 12,
+  "warmup": 12,
+  "grad_clip": 3.0,
+  "es_suavizacao": 0.85,
+  "pos_weight": {
+    "MI": 1.0,
+    "STTC": 1.0,
+    "CD": 1.0,
+    "HYP": 3.0,
+    "NORM": 1.0
+  },
+  "limiar_presenca": 0.5,
+  "usar_se": true,
+  "usar_fft": false,
+  "usar_attn": false,
+  "loss_type": "bce_soft",
+  "ls_epsilon": 0.1,
+  "focal_gamma": 2.0,
+  "focal_alpha": null,
+  "apply_temperature_scaling": false,
+  "ts_init": 1.5
+}

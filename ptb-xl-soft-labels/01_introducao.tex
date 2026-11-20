@@ -1,0 +1,71 @@
+% ============================================================
+% I. INTRODUÇÃO
+% ============================================================
+\section{Introdução}
+\label{sec:introducao}
+
+As doenças cardiovasculares permanecem como a principal causa de morte no
+mundo, e o eletrocardiograma (ECG) é a ferramenta não invasiva mais
+amplamente utilizada para o seu diagnóstico. O volume crescente de exames,
+somado à escassez de especialistas para a sua interpretação visual, tem
+motivado o desenvolvimento de métodos automáticos de apoio à decisão. Em
+cenários de triagem, a identificação tempestiva de condições graves ---
+particularmente o infarto agudo do miocárdio (MI) e as alterações de ST/T
+(STTC) --- pode impactar diretamente o desfecho do paciente, ainda que tais
+exames representem fração reduzida do volume total. Métodos de aprendizado
+profundo têm sido investigados como apoio à decisão clínica, alcançando
+desempenho próximo ao de especialistas em tarefas
+específicas~\cite{hannun2019cardiologist}.
+
+A disponibilização da base PTB-XL~\cite{wagner2020ptbxl} como amplo
+repositório público para classificação de ECG estabeleceu condições
+adequadas para a comparação sistemática de algoritmos. Estudos
+subsequentes~\cite{strodthoff2021benchmark} demonstraram que arquiteturas
+baseadas em redes residuais convolucionais unidimensionais (ResNets 1D) e
+suas variantes superam de forma consistente abordagens baseadas em
+atributos manuais, estabelecendo modelos de referência sobre as
+superclasses diagnósticas da PTB-XL --- NORM (ECG normal), MI, STTC,
+distúrbios de condução (CD) e hipertrofia (HYP). Mecanismos complementares,
+como blocos de \textit{squeeze-and-excitation}~\cite{hu2018squeeze} e
+camadas de autoatenção~\cite{vaswani2017attention}, têm sido incorporados a
+essas arquiteturas com ganhos consistentes e custo computacional
+moderado~\cite{zhang2020seecg}.
+
+Apesar do volume de trabalhos publicados, duas observações motivam este
+estudo. Primeiro, as anotações da PTB-XL não são estritamente binárias: a
+cada superclasse é associada uma confiabilidade diagnóstica atribuída pelo
+cardiologista, que expressa o grau de certeza da anotação. A maior parte
+dos trabalhos descarta essa informação ao binarizar os rótulos, embora ela
+carregue incerteza clínica potencialmente útil. Tratar a confiabilidade
+como rótulo suave (\textit{soft label}) permite que o modelo aprenda não
+apenas a presença, mas o grau de suspeita de cada patologia. Segundo,
+parcela relevante dos ECGs apresenta mais de uma superclasse
+simultaneamente; formulações que forçam uma decisão de rótulo único
+descartam informação clinicamente válida e introduzem um teto artificial de
+desempenho. Uma formulação genuinamente multirrótulo, em que cada patologia
+é avaliada de forma independente, é mais fiel à realidade clínica e à
+estrutura do conjunto de dados.
+
+Este trabalho propõe e avalia arquiteturas de aprendizado profundo que
+estimam a confiabilidade diagnóstica contínua de cada superclasse na PTB-XL
+e, a partir dela, realizam a classificação multirrótulo por limiares
+otimizados. Investigam-se duas variantes de uma mesma espinha dorsal, que
+funde um ramo temporal e um ramo espectral: (A) um conjunto de cinco redes
+especialistas independentes, uma por superclasse; e (B) um modelo de
+\textit{backbone} compartilhado com cinco saídas. As principais
+contribuições são: (i) o uso explícito da confiabilidade diagnóstica como
+alvo de regressão (\textit{soft labels}), com avaliação tanto da estimativa
+de confiança (MAE, RMSE) quanto da classificação (AUC-ROC, AUPRC, F1
+macro); (ii) uma formulação multirrótulo com limiares de decisão otimizados
+por classe na validação e mantidos fixos no teste cego; e (iii) uma
+comparação controlada entre a arquitetura modular de especialistas e o
+\textit{backbone} compartilhado, isolando o efeito da modularidade sob o
+mesmo protocolo experimental.
+
+O restante deste artigo está organizado da seguinte forma. A
+Seção~\ref{sec:relacionados} revisa trabalhos relacionados; a
+Seção~\ref{sec:metodos} descreve a base de dados, as arquiteturas, a função
+de perda e o protocolo experimental; a Seção~\ref{sec:resultados} apresenta
+os resultados quantitativos; as Seções~\ref{sec:discussao}
+e~\ref{sec:limitacoes} discutem as implicações e as limitações; e a
+Seção~\ref{sec:conclusao} conclui o trabalho.

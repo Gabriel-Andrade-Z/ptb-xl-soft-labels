@@ -1,0 +1,36 @@
+% ============================================================
+% RESUMO / ABSTRACT
+% ============================================================
+\begin{abstract}
+A interpretação automática do eletrocardiograma (ECG) é uma ferramenta
+cada vez mais relevante para a triagem clínica, em especial para a
+detecção tempestiva de condições cardíacas graves. Este trabalho propõe e
+avalia arquiteturas de aprendizado profundo para a estimativa da
+confiabilidade diagnóstica e a classificação multirrótulo de ECG na base
+PTB-XL, sobre as cinco superclasses: ECG normal (NORM), infarto do
+miocárdio (MI), alterações de ST/T (STTC), distúrbios de condução (CD) e
+hipertrofia (HYP). As redes são supervisionadas diretamente pela
+confiabilidade contínua anotada por cardiologistas, tratada como rótulo
+suave (\textit{soft label}), e combinam um ramo temporal --- baseado em
+convoluções dilatadas com blocos de \textit{squeeze-and-excitation} e
+autoatenção --- a um ramo espectral derivado da transformada de Fourier.
+Comparam-se duas variantes da mesma espinha dorsal: (A) um conjunto de
+cinco redes especialistas independentes, uma por superclasse; e (B) um
+único modelo de \textit{backbone} compartilhado com cinco saídas. Em ambas,
+a presença de cada patologia é decidida por limiares otimizados por classe
+no conjunto de validação e mantidos fixos no teste cego. A avaliação
+abrange tanto a estimativa de confiança (MAE, RMSE) quanto a classificação
+(AUC-ROC, AUPRC e F1 macro). No teste cego, ambas as variantes alcançaram
+AUC-ROC macro de aproximadamente [XX,XX] e F1 macro de [XX,XX], com a
+variante de \textit{backbone} compartilhado atingindo desempenho
+equivalente ao das redes especialistas com cerca de um quinto dos
+parâmetros. Os resultados indicam que a estimativa de confiabilidade
+diagnóstica, aliada a uma decisão multirrótulo por limiares otimizados, é
+um caminho promissor para sistemas auditáveis de apoio à decisão em
+cardiologia.
+\end{abstract}
+
+\begin{IEEEkeywords}
+eletrocardiograma, aprendizado profundo, classificação multirrótulo,
+estimativa de confiança, PTB-XL, redes residuais
+\end{IEEEkeywords}
